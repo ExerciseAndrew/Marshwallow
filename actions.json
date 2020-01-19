@@ -1,0 +1,7 @@
+{
+    "acceptable_actions": "move", "go", "walk", "quit", "examine", "inspect", "look at", "interact", "look", "eat", "drink" "back", "onscreen", "baswash", "teleport", "dev",
+
+    "turn": {"look", "turn", "right", "left"},
+    "go": {"move", "walk", "go", "leave", "gtfo", "run"},
+    "get": {"get"}
+}
