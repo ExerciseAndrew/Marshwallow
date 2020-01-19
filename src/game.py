@@ -8,28 +8,12 @@ import math
 import json
 import copy
 
-# sys.path.insert(1, 'src/')
 from text_utilities import *
-
-
+from Player import *
+from Rooms import *
 screen_width = 100
 
-def choose_triangle_type():
-    # a = float(input("The length of side a = "))   
-    # b = float(input("The length of side b = ")) 
-    # c = float(input("The length of side c = "))  
-    a = 1
-    b = 1
-    c = 1
-    t = ''
-    if a != b and b != c and a != c:
-        t = 'scalene'
-    elif a == b and b == c and a == c:
-        t = 'equilateral'
-    else:
-        t = 'isosceles'
-    print('You have chosen ' + t + '!\n')
-    return t
+
 
 
 
@@ -41,40 +25,10 @@ solved_places: {'a1': False, 'a2': False, 'a3': False, 'a4': False, 'a5': False,
                 }
 
 
-class Room:
-    def __init__(self):
-        self.name = ''
-        self.address = float
-        self.ingress_points = []
-        self.objects = []
-        self.editrooms = False
-myRoom = Room()
-### Player Setup ###
-class Player:
-    def __init__(self):
-        self.name = ''
-        self.triangle = ''
-        self.hp = 0
-        self.mp = 0
-        self.status_effects = []
-        self.location = 'c1' ## Also known as 'address' ##
-        self.game_over = False
-        self.teleport = False
-        self.keys = False
-        
 
-    def reset_hp_mp(self):
-        if self.triangle == 'scalene':
-            self.hp = 120
-            self.mp = 40
-        elif self.triangle == 'equilateral':
-            self.hp = 40
-            self.mp = 120
-        elif self.triangle == 'isosceles':
-            self.hp = 80
-            self.mp = 80
-     
-myPlayer = Player()
+
+
+
 
        
 ### Title Screen ###
@@ -367,6 +321,8 @@ def load_json(p):
     return json.loads(data)
 
 #actionfile = load_json("actions.json")
+myRoom = Room()
+myPlayer = Player()
 zonemap = load_json("zonemap.json")
 zonemap_lookup_address_by_name = {}
 for address, value in zonemap.items():
