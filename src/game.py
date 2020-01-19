@@ -11,26 +11,10 @@ import copy
 from text_utilities import *
 from Player import *
 from Rooms import *
+from move import *
 screen_width = 100
 
-
-
-
-
-solved_places: {'a1': False, 'a2': False, 'a3': False, 'a4': False, 'a5': False,
-                'b1': False, 'b2': False, 'b3': False, 'b4': False, 'b5': False,
-                'c1': False, 'c2': False, 'c3': False, 'c4': False, 'c5': False,
-                'd1': False, 'd2': False, 'd3': False, 'd4': False, 'd5': False,
-                'e1': False, 'e2': False, 'e3': False, 'e4': False, 'e5': False,
-                }
-
-
-
-
-
-
-
-       
+      
 ### Title Screen ###
 def title_screen_selections():
     inp = prompt_select_from("", ["play", "help", "quit"], "Please enter a valid command.")
@@ -102,7 +86,8 @@ def prompt():
         else:
             prompt()
     elif action.lower() in ['move', 'go', 'walk']:
-        player_move(action.lower())
+        player_move(action.lower(), zonemap, myPlayer)
+        print_location()
     elif action.lower() in ['examine', 'inspect', 'look at', 'look']:
         player_examine(action.lower())
     elif action.lower() in ['onscreen']:
@@ -187,38 +172,6 @@ def player_teleport(myAction):
 # def teleport_handler(destination):
 #     if destination in zonemap:
 
-def player_move(myAction):
-    while True:
-        dest = input("Where would you like to move?\n")
-        if dest in UP:
-            destination = zonemap[myPlayer.location]['up']
-            movement_handler(destination)
-            return
-        elif dest in LEFT:
-            destination = zonemap[myPlayer.location]['left']
-            movement_handler(destination)
-            return
-        elif dest in RIGHT:
-            destination = zonemap[myPlayer.location]['right']
-            movement_handler(destination)
-            return
-        elif dest in DOWN:
-            destination = zonemap[myPlayer.location]['down']
-            movement_handler(destination)
-            return
-        else:
-            print("Wait, go where?")
-
-def movement_handler(destination):
-    if destination in zonemap:
-        print("\n" + "you have moved to " + destination + ".\n")
-        myPlayer.location = destination
-        print_location()
-    else:
-        if destination == "":
-            print("There is no exit in that direction")
-        else:
-            print("Please let an admin know that this room exit is broken.")
 
 def player_examine(action):
     if zonemap[myPlayer.location][SOLVED]:
@@ -246,10 +199,15 @@ SOLVED = False
 DESCRIPTION = 'description'
 EXAMINATION = 'examine'
 EXITS = 'UP', 'DOWN', 'LEFT', 'RIGHT'
-UP = 'up', 'north', 'n'
-DOWN = 'down', 'south', 's'
-LEFT = 'left','west', 'w'
-RIGHT = 'right', 'east', 'e'
+
+
+solved_places: {'a1': False, 'a2': False, 'a3': False, 'a4': False, 'a5': False,
+                'b1': False, 'b2': False, 'b3': False, 'b4': False, 'b5': False,
+                'c1': False, 'c2': False, 'c3': False, 'c4': False, 'c5': False,
+                'd1': False, 'd2': False, 'd3': False, 'd4': False, 'd5': False,
+                'e1': False, 'e2': False, 'e3': False, 'e4': False, 'e5': False,
+                }
+
 def create_new_room(name, address, ingress):
         pass
 def edit_room():
