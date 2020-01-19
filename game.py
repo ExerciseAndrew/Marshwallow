@@ -359,6 +359,7 @@ def setup_game():
     main_game_loop()
 
 def load_json(p):
+    p = "data/" + p
     with open(p, 'r') as file:
         data = file.read()
     return json.loads(data)
