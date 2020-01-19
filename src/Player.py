@@ -1,6 +1,6 @@
 ### Player Setup ###
 class Player:
-    def __init__(self):
+    def __init__(self, zonemap):
         self.name = ''
         self.triangle = ''
         self.hp = 0
@@ -8,9 +8,9 @@ class Player:
         self.status_effects = []
         self.location = 'c1' ## Also known as 'address' ##
         self.game_over = False
-        self.teleport = False
+        self._teleport = False
         self.keys = False
-        
+        self._zm = zonemap
 
     def reset_hp_mp(self):
         if self.triangle == 'scalene':
@@ -22,7 +22,18 @@ class Player:
         elif self.triangle == 'isosceles':
             self.hp = 80
             self.mp = 80
-     
+
+    def print_location(self):
+            address = self.location
+            room = self._zm[address]
+            print ("")
+            print ("#"*(4 + len(address)))
+            print ("# " + address.upper() + " #")
+            print ("# "+ room['description'].replace('\n', '') +  " #")
+            print ("#"*(4 + len(address)) )
+
+    def can_teleport(self):
+        return self._teleport
 
 
 def choose_triangle_type():

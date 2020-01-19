@@ -62,14 +62,6 @@ def help_menu():
 
 
 ###GAME INTERACTIVITY###
-def print_location():
-    address = myPlayer.location
-    print ("\n" + ("#"*(4 + len(address))))
-    print ("#" + address.upper() + "#")
-    print ("#"+ zonemap[address][DESCRIPTION] +  "#")
-    print ("\n" + "#"*(4 + len(address)) )
-
-
 
     
 
@@ -87,11 +79,10 @@ def prompt():
             prompt()
     elif action.lower() in ['move', 'go', 'walk']:
         player_move(action.lower(), zonemap, myPlayer)
-        print_location()
     elif action.lower() in ['examine', 'inspect', 'look at', 'look']:
         player_examine(action.lower())
     elif action.lower() in ['onscreen']:
-        print_location()
+        myPlayer.print_location()
     elif action.lower() in ['baswash']:
         god_mode()
     elif action.lower() in ['dev']:
@@ -101,7 +92,7 @@ def prompt():
             slow_print("You can't do that without permission.")
             prompt()
     elif action.lower() in ['teleport']:
-        if myPlayer.teleport is True:
+        if myPlayer.can_teleport():
             player_teleport(action.lower())
         else:
             slow_print("You can't do that without permission.")
@@ -115,7 +106,7 @@ def god_mode():
         print ("Room editor commands enabled")
         god_mode()
     elif inp == 'b':
-        myPlayer.teleport = True
+        myPlayer._teleport = True
         print ("teleport commands enabled")
         god_mode()
     elif inp == 'c':
@@ -126,7 +117,7 @@ def god_mode():
     elif inp == 'd':
         slow_print("Everything is back to norbal !\n")
         myPlayer.editrooms = False
-        myPlayer.teleport = False
+        myPlayer._teleport = False
         myPlayer.keys = False
         prompt()
 
@@ -166,7 +157,7 @@ def player_teleport(myAction):
         else:
             print("\n" + "you have teleported to " + dest + ".\n")
             myPlayer.location = dest_address
-            print_location()
+            myPlayer.print_location()
             prompt()
 
 # def teleport_handler(destination):
@@ -196,7 +187,7 @@ def player_examine(action):
 
 ZONENAME = 'zonename'
 SOLVED = False
-DESCRIPTION = 'description'
+# DESCRIPTION = 'description'
 EXAMINATION = 'examine'
 EXITS = 'UP', 'DOWN', 'LEFT', 'RIGHT'
 
@@ -208,7 +199,7 @@ solved_places: {'a1': False, 'a2': False, 'a3': False, 'a4': False, 'a5': False,
                 'e1': False, 'e2': False, 'e3': False, 'e4': False, 'e5': False,
                 }
 
-def create_new_room(name, address, ingress):
+def create_new_room(name, address=None, ingress=None):
         pass
 def edit_room():
         pass
@@ -279,10 +270,10 @@ def load_json(p):
     return json.loads(data)
 
 #actionfile = load_json("actions.json")
-myRoom = Room()
-myPlayer = Player()
 zonemap = load_json("zonemap.json")
 zonemap_lookup_address_by_name = {}
 for address, value in zonemap.items():
     zonemap_lookup_address_by_name[value['zonename']] = address
+myPlayer = Player(zonemap)
+myRoom = Room()
 title_screen()

@@ -32,6 +32,7 @@ def movement_handler(destination, zonemap, player):
     if destination in zonemap:
         print("\n" + "you have moved to " + destination + ".\n")
         player.location = destination
+        player.print_location()
     else:
         if destination == "":
             print("There is no exit in that direction")
