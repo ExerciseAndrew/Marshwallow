@@ -8,7 +8,9 @@ import math
 import json
 import copy
 
+# sys.path.insert(1, 'src/')
 from text_utilities import *
+
 
 screen_width = 100
 
@@ -136,7 +138,7 @@ def print_location():
 def prompt():
     print("\n" + "=====================")
 
-    acceptable_actions = ['move','go', 'walk', 'quit', 'examine', 'inspect', 'look at', 'interact', 'look', 'eat', 'drink' 'back', 'onscreen', 'baswash', 'teleport', 'dev']
+    acceptable_actions = ['move','go', 'walk', 'quit', 'examine', 'inspect', 'look at', 'interact', 'look', 'eat', 'drink', 'back', 'onscreen', 'baswash', 'teleport', 'dev']
     action = prompt_select_from("What would you like to do?", acceptable_actions, "Unknown action, tryangle again.")
 
     if action.lower() == 'quit':
