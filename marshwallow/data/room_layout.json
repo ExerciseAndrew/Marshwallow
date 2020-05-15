@@ -1,0 +1,53 @@
+{
+"room": {
+"north_wall": { 
+    "name": "",
+    "objects": "",
+    "ingress": "",
+    "description": "",
+    "interaction": "",
+    "solved": false,
+    "right": "east_wall",
+    "left":"west_wall"
+
+    },
+"east_wall": {
+    "name": "",
+    "objects": "",
+    "ingress": "",
+    "description": "",
+    "interaction": "",
+    "solved": false,
+    "right": "south_wall",
+    "left":"north_wall"
+},
+"south_wall": {
+    "name": "",
+    "objects": "",
+    "ingress": "",
+    "description": "",
+    "interaction": "",
+    "solved": false,
+    "right": "west_wall",
+    "left":"east_wall"
+},
+"west_wall": {
+    "name": "",
+    "objects": "",
+    "ingress": "",
+    "description": "",
+    "interaction": "",
+    "solved": false,
+    "right": "north_wall",
+    "left":"south_wall"
+},
+"room_middle":{
+    "name": "",
+    "objects": "",
+    "ingress": "",
+    "description": "",
+    "interaction": "",
+    "solved": false
+}
+}
+}

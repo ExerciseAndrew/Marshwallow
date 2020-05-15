@@ -1,0 +1,409 @@
+{
+    "Pond Island": {
+        "zonename": "Cave",
+        "solved": false,
+        "description": "The cave exits to the other side of the cliffside pond.",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "__comment": "#Come back to add wormhole***************************************************",
+        "up":"",
+        "down":"",
+
+        "north": "",
+        "south": "Pond",
+        "west": "",
+        "east": "Pond Shore"
+    },
+    "Pond Shore": {
+        "zonename": "Pond, East Shore",
+        "solved": false,
+        "description": "There isn't anything here.",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "",
+        "south": "Teetering Rock",
+        "west": "Pond Island",
+        "east": "Tall Cliff"
+    },
+    "Tall Cliff": {
+        "zonename": "Cliff",
+        "solved": false,
+        "description": "What a large wall of rock this is",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "",
+        "south": "North Road",
+        "west": "Pond Shore",
+        "east": "Cave Entrance"
+    },
+    "Cave Entrance": {
+        "zonename": "Cave Entrance",
+        "solved": false,
+        "description": "This is the entrance to a hole in the wall. Some may call it a cave.",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "",
+        "south": "The Woods!",
+        "west": "Tall Cliff",
+        "east": "Native Tribe"
+    },
+    "Native Tribe": {
+        "zonename": "Tribe of Natives",
+        "solved": false,
+        "description": "They look like they notice you.",
+        "locked": "Better steer clear. Don't want to draw attention.",
+        "unlocked": "The river rose. Village is flooded. Where did they all go?",
+        "up":"",
+        "down":"",
+
+        "north": "",
+        "south": "Small Dock",
+        "west": "Cave Entrance",
+        "east": ""
+    },
+    "Pond": {
+        "zonename": "South Shore of Pond",
+        "solved": false,
+        "description": "Oooh. A pond.`",
+        "locked": "Hey! There is a big rock here!",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "Pond Island",
+        "south": "Swamp Swimming Hole",
+        "west": "",
+        "east": "Teetering Rock"
+    },
+    "Teetering Rock": {
+        "zonename": "Teetering Rock",
+        "solved": false,
+        "description": "A large rock teetering precariously over the edge of the pond.",
+        "locked": "Should make a big splash.",
+        "unlocked": "There is a big hole where the rock once was.",
+        "up":"",
+        "down":"",
+
+        "north": "",
+        "south": "Unkept Path",
+        "west": "Pond",
+        "east": "North Road"
+    },
+    "North Road": {
+        "zonename": "Road",
+        "solved": false,
+        "description": "description",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "Tall Cliff",
+        "south": "Camp",
+        "west": "Teetering Rock",
+        "east": "The East-Woods!"
+    },
+    "The East-Woods!": {
+        "zonename": "The Woods",
+        "solved": false,
+        "description": "description",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "Cave Entrance",
+        "south": "Path To River",
+        "west": "North Road",
+        "east": "Small Dock"
+    },
+    "Small Dock": {
+        "zonename": "Boat",
+        "solved": false,
+        "description": "Looks like a boat. Better climb in.",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "Native Tribe",
+        "south": "Stony River Shore",
+        "west": "The East-Woods!",
+        "east": ""
+    },
+    "Swamp Swimming Hole": {
+        "zonename": "Swamps",
+        "solved": false,
+        "description": "Looks like a swamp. Smells like one, too.\n Not great for swimming.",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"Even the sky is swampy. Tree tops are tall, dark, and mossy.",
+        "down":"Your feet are wet, muddy, and under water.",
+        "north": "Pond",
+        "south": "Stinky Ol' Bog",
+        "west": "",
+        "east": "Unkept Path"
+    },
+    "Unkept Path": {
+        "zonename": "Unkept Path",
+        "solved": false,
+        "description": "The path is difficult to make out at first. \nHeads East, into the woods.",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "Teetering Rock",
+        "south": "South West Forest",
+        "west": "Swamp Swimming Hole",
+        "east": "Camp"
+    },
+    "Camp": {
+        "zonename": "Camp",
+        "solved": false,
+        "description": "Has everything a loner like you could need.",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "North Road",
+        "south": "South Forest",
+        "west": "Unkept Path",
+        "east": "Path To River"
+    },
+    "Path To River": {
+        "zonename": "Path to River",
+        "solved": false,
+        "description": "description",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "The Woods!",
+        "south": "South East Forest",
+        "west": "Camp",
+        "east": "Stony River Shore"
+    },
+    "Stony River Shore": {
+        "zonename": "River Shore",
+        "solved": false,
+        "description": "The water looks deep and the current looks strong.",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "Small Dock",
+        "south": "South River Shore",
+        "west": "Path To River",
+        "east": ""
+    },
+    "Stinky Ol' Bog": {
+        "zonename": "Bog",
+        "solved": false,
+        "description": "Smells like something died. I wonder how many creatures the swamp swallows up here.\nProbably not the best place for a walk.",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "Swamp Swimming Hole",
+        "south": "The Moore",
+        "west": "",
+        "east": "South West Forest"
+    },
+    "South West Forest": {
+        "zonename": "SW Forest",
+        "solved": false,
+        "description": "These trees have big roots!",
+        "key1": false,
+        "key2": false,
+        "key3": false,
+        "key4": false,
+        "locked1": "You don't want to get lost. Try to find some way of remembering where you're going.",
+        "locked2":"This tree looks a lot like the other trees. This one, too.",
+        "locked3":"I can see why they call it 'The Woods.'",
+        "locked4":"The trees are thinning up a bit!",
+        "unlocked": "Well the scenery is certainly different.",
+        "up":"",
+        "down":"",
+
+        "north": "Unkept Path",
+        "south": "Meadow",
+        "west": "Stinky Ol' Bog",
+        "east": "South Forest"
+    },
+    "South Forest": {
+        "zonename": "S Forest",
+        "solved": false,
+        "description": "You are in the woods!",
+        "key1": false,
+        "key2": false,
+        "key3": false,
+        "key4": false,
+        "locked1": "You don't want to get lost. Try to find some way of remembering where you're going.",
+        "locked2":"This tree looks a lot like the other trees. This one, too.",
+        "locked3":"I can see why they call it 'The Woods.'",
+        "locked4":"The trees are thinning up a bit!",
+        "unlocked": "Well the scenery is certainly different.",
+        "up":"",
+        "down":"",
+
+        "north": "Camp",
+        "south": "Goat Pasture",
+        "west": "South West Forest",
+        "east": "South East Forest"
+    },
+    "South East Forest": {
+        "zonename": "SE Forest",
+        "solved": false,
+        "description": "Look at all of this... forest. Wouldn't want to be stuck in here at night.",
+        "key1": false,
+        "key2": false,
+        "key3": false,
+        "key4": false,
+        "locked1": "You don't want to get lost. Try to find some way of remembering where you're going.",
+        "locked2":"This tree looks a lot like the other trees. This one, too.",
+        "locked3":"I can see why they call it 'The Woods.'",
+        "locked4":"The trees are thinning up a bit!",
+        "unlocked": "Now where are you?",
+        "up":"",
+        "down":"",
+
+        "north": "Path To River",
+        "south": "Steep Ravine",
+        "west": "South Forest",
+        "east": "South River Shore"
+    },
+    "South River Shore": {
+        "zonename": "S Rivershore",
+        "solved": false,
+        "description": "Made it to land! All of that exercise in the swamps really paid off.",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "Stony River Shore",
+        "south": "Big Teetering Rock",
+        "west": "South East Forest",
+        "east": ""
+    },
+    "The Moore": {
+        "zonename": "Moore",
+        "solved": false,
+        "description": "It's hard to describe a moore if you've never seen one before.\nIt is certainly rather moore-ish, though.\n Do you hear bleating?",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "Stinky Ol' Bog",
+        "south": "",
+        "west": "",
+        "east": "Meadow"
+    },
+    "Meadow": {
+        "zonename": "Meadow",
+        "solved": false,
+        "description": "What a lovely clearing. I wonder if there is anything to eat nearby.",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "South West Forest",
+        "south": "",
+        "west": "The Moore",
+        "east": "Goat Pasture"
+    },
+    "Goat Pasture": {
+        "zonename": "Goats",
+        "solved": false,
+        "description": "Goats! Let's milk'em!",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "South Forest",
+        "south": "",
+        "west": "Meadow",
+        "east": "Steep Ravine"
+    },
+    "Top Of Steep Ravine": {
+        "zonename": "Rocky Ravine",
+        "solved": false,
+        "description": "Probably the best place to kill yourself in this weird little world. By accident, I mean.",
+        "locked": "__comment",
+        "unlocked": "__comment",
+        "up":"",
+        "down":"",
+
+        "north": "South East Forest",
+        "south": "",
+        "west": "Goat Pasture",
+        "east": "Ravine Face"
+    },
+    "Big Teetering Rock": {
+        "zonename": "Large Teetering Rock",
+        "solved": false,
+        "description": "This is a very large, very teetery, very tempting rock.",
+        "locked": "It's just waiting for the right nudge.",
+        "unlocked": "What a huge splash!",
+        "up":"",
+        "down":"",
+
+        "north": "South River Shore",
+        "south": "",
+        "west": "Ravine Face_bottom",
+        "east": ""
+    },
+    "Ravine Face_top": {
+        "zonename": "Ravine Face_top",
+        "solved": false,
+        "description": "It's a long fall, but maybe you can climb down.",
+        "key": "climb",
+        "locked1": "So far so good.",
+        "locked2": "Loose rocks. Got to be careful.",
+        "locked3": "Not too much further. Not much to grab onto, either.",
+        "locked 4": "Bit of a jump to get down. No other option. Have to risk it if we want to get down.",
+        "unlocked": "Made it!",
+        "up":"",
+        "down":"",
+
+        "north": "Top Of Steep Ravine",
+        "south": "",
+        "west": "Ravine Face_bottom",
+        "east": ""
+    },
+    "Ravine Face_bottom": {
+        "zonename": "Ravine Face_top",
+        "solved": false,
+        "description": "It looks like the best way up is still pretty risky. ",
+        "key": "climb",
+        "locked1": "Steep overhang. Gonna be tough.",
+        "locked2": "Almost nothing for your hands or for your feet to grab.",
+        "locked3": "Loose rocks! Need to change pants....",
+        "locked 4": "Almost there...",
+        "unlocked": "Made it!",
+        "up":"",
+        "down":"",
+
+        "north": "Top Of Steep Ravine",
+        "south": "",
+        "west": "Ravine Face_top",
+        "east": "Big Teetering Rock"    
+    }
+}
