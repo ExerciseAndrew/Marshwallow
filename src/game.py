@@ -2,17 +2,15 @@ import cmd
 import textwrap
 import sys
 import os
-import time
-import random
-import math
-import json
-import copy
-
-from text_utilities import *
-from Player import *
-from Rooms import *
-from move import *
-screen_width = 100
+#import math
+#import copy
+#from pydub import AudioSegment
+#from pydub.playback import play
+#from text_utilities import *
+from Player import*
+from json_handler import*
+from move import*
+screen_width = 60
 
       
 ### Title Screen ###
@@ -24,26 +22,10 @@ def title_screen_selections():
         help_menu()
     else:
         sys.exit()
-    # option = input(">")
-    # while True:
-    #     if option.lower() == ("play"):
-    #         start_game() #placeholder until written
-    #         break
-    #     elif option.lower() == ("help"):
-    #         help_menu()
-    #         break
-    #     elif option.lower() == ("quit"):
-    #         sys.exit()
-    #         break
-    #     else:
-    #         print("Please enter a valid command.")
-    #         option = input(">")
-
-
 
 def title_screen():
     clear()
-    print_intense("Maaaarshmalllooooowwwwwww Pizzaaaaa!!!!!!!")
+    print_intense("Marpshwallow!")
     print ("            -Play-             ")
     print ("            -Help-             ")
     print ("            -Quit-             ")
@@ -55,50 +37,58 @@ def help_menu():
     print ("Welcome to Marshmallow Recruitment Laboratories Inc.")
     print ("###############################")
     print ("Use up, down, left, pizza to move.")
-    print ("triangle your commands")
-    print ("Use 'look' to inspect something")
-    print ("Figure it out! You're in a pizza! \n\nGo Go Marshmallow!")
+    print ("marshmallow your commands")
+    print ("Use something like 'look' or\n'examine' to inspect something")
+    print ("Figure it out! You're in a pop topping rock tipping hot topping talbo-dee-doo!")
     title_screen_selections()
 
+
+
+def setup_game():
+    slow = False
+    if slow:
+        myPlayer.name = slow_prompt("Howdy Doo! \nWho Are You?")
+    else:
+        myPlayer.name = "Fartmonster"
+
+    
+    myPlayer.reset_hp_mp()
+    if slow:
+        #ques_1()
+        intro()
+        clear()
+        print("########################\n## IT BEGINS TO ITCH ###\n########################\n")
+        main_game_loop()
+        
+    else:
+        clear()
+        print_intense("########################\n## IT BEGINS TO ITCH ###\n########################\n")
+        myPlayer.print_location()
+        main_game_loop()
+    
+
+
+
+def intro():
+    slow_print_ack("Swim, " + myPlayer.name + "!\nSWiM!!", t = 0.02)
+    inp = prompt_select_from("What are you doing?\n Swim!!!\n", ['drown', 'swim'], "You're gonna die!")
+    if inp == "swim":
+        slow_print_ack("The water is too shallow. . .\n", t = 0.03)
+        slow_print_ack("No matter how hard you try, the swamp just isn't a good place\nfor exercise.")
+        slow_print_ack("And if you slough around here too long you could\nwind up getting that weird rash again.", t = 0.03)
+        time.sleep(0.5)
+    elif inp == "drown":
+        slow_print_ack("You lazily set yourself adrift atop the murky waters. . . \n", t = 0.03)
+        slow_print_ack("Despite your best efforts, the swamp waters are too shallow to drown in.\n", t = 0.03)
+    
 
 ###GAME INTERACTIVITY###
 
     
-
-def prompt():
-    print("\n" + "=====================")
-
-    acceptable_actions = ['move','go', 'walk', 'quit', 'examine', 'inspect', 'look at', 'interact', 'look', 'eat', 'drink', 'back', 'onscreen', 'baswash', 'teleport', 'dev']
-    action = prompt_select_from("What would you like to do?", acceptable_actions, "Unknown action, tryangle again.")
-
-    if action.lower() == 'quit':
-        input("ARE YOU SURE YOU WANT TO QUIT? y/n*\n>>>")
-        if input == 'y' 'Y':
-            sys.exit()
-        else:
-            prompt()
-    elif action.lower() in ['move', 'go', 'walk']:
-        player_move(action.lower(), zonemap, myPlayer)
-    elif action.lower() in ['examine', 'inspect', 'look at', 'look']:
-        player_examine(action.lower())
-    elif action.lower() in ['onscreen']:
-        myPlayer.print_location()
-    elif action.lower() in ['baswash']:
-        god_mode()
-    elif action.lower() in ['dev']:
-        if myPlayer.editrooms is True:
-            room_edit_prompt(action.lower)
-        else:
-            slow_print("You can't do that without permission.")
-            prompt()
-    elif action.lower() in ['teleport']:
-        if myPlayer.can_teleport():
-            player_teleport(action.lower())
-        else:
-            slow_print("You can't do that without permission.")
-            prompt()
-
-
+#def make_sound():
+ #   alarm = AudioSegment.from_wav("Alarm01.wav")
+  #  play(alarm)
+    
 def god_mode():
     inp = prompt_select_from("Sup?\n A) Room Editor\n B) Teleport\n C) Keys\n D) Restore Defaults\n E) Exit\n>>>", ['a', 'b', 'c', 'd', 'e', 'doughnut'], "Choose either A, B, C, D, OR E\n>>>") 
     if inp == 'a':
@@ -129,20 +119,11 @@ def god_mode():
         print_intense("AHHH!!\nDOUGHNUT!!\n")
         god_mode()
 
-def room_edit_prompt():
-    inp = prompt_select_from("A)New Room\n B)Edit this room\n C)Exit", ['a', 'b', 'c'], "Try again.")
-    inp = inp.lower()
-    if inp == 'a':
-        create_new_room(myRoom)
-    elif inp == 'b':
-        edit_room()
-    elif inp == 'c':
-        slow_print("Sam hands the ring back to Frodo")
-        prompt()
 
 def lookup_address_by_name(name):
     try:
         address = zonemap_lookup_address_by_name[name]
+        address = special_lookup_address_by_name[name]
         # room = zonemap[address]
         return address#, room
     except:
@@ -160,50 +141,13 @@ def player_teleport(myAction):
             myPlayer.print_location()
             prompt()
 
-# def teleport_handler(destination):
-#     if destination in zonemap:
-
-
 def player_examine(action):
-    if zonemap[myPlayer.location][SOLVED]:
+    if zonemap[myPlayer.location][Solved]:
         print("Solved")
     else:
         print("Unsolved")
         ####Trigger event.
-  
-#room set up#
-### Map ###
-# player starts at c1
-###   __ __ __ __ __ 
-###  |__|__|__|__|__|y5 a1,a2,a3...
-###  |__|__|__|__|__|y4 b1,b2,b3...
-###  |__|__|__|__|__|y3 c1,c2,c3...
-###  |__|__|__|__|__|y2
-###  |__|__|__|__|__|y1
-###  x1 x2 x3 x4 x5
-###
-
-
-
-ZONENAME = 'zonename'
-SOLVED = False
-# DESCRIPTION = 'description'
-EXAMINATION = 'examine'
-EXITS = 'UP', 'DOWN', 'LEFT', 'RIGHT'
-
-
-solved_places: {'a1': False, 'a2': False, 'a3': False, 'a4': False, 'a5': False,
-                'b1': False, 'b2': False, 'b3': False, 'b4': False, 'b5': False,
-                'c1': False, 'c2': False, 'c3': False, 'c4': False, 'c5': False,
-                'd1': False, 'd2': False, 'd3': False, 'd4': False, 'd5': False,
-                'e1': False, 'e2': False, 'e3': False, 'e4': False, 'e5': False,
-                }
-
-def create_new_room(name, address=None, ingress=None):
-        pass
-def edit_room():
-        pass
-
+ 
 ###GAME FUNCTIONALITY###
 def start_game():
     clear()
@@ -216,64 +160,71 @@ def main_game_loop():
         prompt()
 ### here handle if game has been solved
 
-# Do not uncomment this unless you are sure
-# def update_zonemap():
-#     directions = ["left", "right", "up", "down"]
-#     zonemap2 = copy.deepcopy(zonemap)
-#     for r in zonemap2:
-#         room = zonemap2[r]
-#         room["exits"] = {}
-#         for key in room:
-#             if key in directions:
-#                 room["exits"][key] = room[key]
+def prompt():
+    print("\n" + "=====================")
+    # I want to add: look, glance, read, climb, take, 'eat', 'drink', 'back', blah blah blah I want this to all be in a json file, daddy.
+    acceptable_actions = ['sit', 'stand', 'sound', 'help', 'move', 'go', 'walk', 'quit', 'examine', 'scratch', 'glance', 'look', 'look at', 'onscreen', 'baswash', 'teleport', 'dev']
+    action = prompt_select_from("What would you like to do?", acceptable_actions, "Unknown action, tryangle again.")
 
-#         for d in directions:
-#             room.pop(d, None)
-#     to_json(zonemap2, "zonemap.json")
-#
+    if action.lower() == 'quit':
+        input("ARE YOU SURE YOU WANT TO QUIT? y/n*\n>>>")
+        if input == 'y' 'Y' 'yes' 'Yes':
+            sys.exit()
+        else:
+            prompt()
+    elif action.lower() in ['sound']:
+        make_sound()
+    elif action.lower() in ['help']:
+        cry_for_help()
+    elif action.lower() in ['move', 'go', 'walk']:
+        player_move(action.lower(), zonemap, myPlayer)
+    elif action.lower() in ['glance']:
+        myPlayer.player_glance()
+    elif action.lower() in ['look']:
+        myPlayer.player_look()
+    elif action.lower() in ['onscreen']:
+        myPlayer.print_location()
+    elif action.lower() in ['baswash']:
+        god_mode()
+    elif action.lower() in ['scratch']:
+        slow_print_ack("You can't scratch this itch.\nI'm sorry.")
+    elif action.lower() in ['sit']:
+        slow_print_ack("You sit on the wet ground.\n", t = .08)
+    elif action.lower in ['stand']:
+        slow_print_ack("You feel the ground under your socks.\n", t = 0.05)
+    elif action.lower() in ['dev']:
+        if myPlayer.editrooms is True:
+            room_edit_prompt()
+        else:
+            slow_print("You can't do that without permission.")
+            prompt()
+    elif action.lower() in ['teleport']:
+        if myPlayer.can_teleport():
+            player_teleport(action.lower())
+        else:
+            slow_print("You can't do that without permission.")
+            prompt()
+
+def cry_for_help():
+    slow_print_ack("HELP!\n", t = 0.05)
+    slow_print_ack("HEEEEEEELP!!!!\n", t = 0.03)
+    slow_print_ack("... ... ...\n", t = 0.04)
+    slow_print_ack("No answer, but you think you hear the sound of distant drums.\nBetter hunker down and lay low.", t = 0.03)
 
 
-def to_json(zm, filename):
-    # this replaces the original zonemap.json
-    fp = open(filename, "w")
-    string = json.dumps(zm, sort_keys = True, indent = 4)
-    _ = fp.write( string )
-    fp.close()
-
-def setup_game():
-    slow = False
-    if slow:
-        myPlayer.name = slow_prompt("Howdy Doo! \nWho Are You?")
-    else:
-        myPlayer.name = "Fartmonster"
-
-    slow_print("What kind of triangle are you?")
-    myPlayer.triangle = choose_triangle_type()
-    myPlayer.reset_hp_mp()
-
-    if slow:
-        slow_print_ack("Welcome, " + myPlayer.name + " the " + myPlayer.triangle + ".", t = 0.04)
-        slow_print_ack("You're just a dirty little " + myPlayer.triangle + ", aren't you?", t = 0.04)
-        slow_print_ack("Look at yourself, " + myPlayer.name + ".\n\n You've gotten lost in the swamps.", t = 0.02)
-        slow_print_ack("If you slough around here too long you could\nwind up getting that weird rash again.", t = 0.03)
-        
-        time.sleep(0.5)
-        clear()
-        print("########################\n## IT BEGINS TO ITCH ###\n########################\n")
-
-    main_game_loop()
-
-def load_json(p):
-    p = "data/" + p
-    with open(p, 'r') as file:
-        data = file.read()
-    return json.loads(data)
-
-#actionfile = load_json("actions.json")
-zonemap = load_json("zonemap.json")
-zonemap_lookup_address_by_name = {}
-for address, value in zonemap.items():
-    zonemap_lookup_address_by_name[value['zonename']] = address
 myPlayer = Player(zonemap)
-myRoom = Room()
+#myRoom = Room()
 title_screen()
+
+
+
+##### def room_edit_prompt():
+  #  inp = prompt_select_from("A)New Room\n B)Edit this room\n C)Exit", ['a', 'b', 'c'], "Try again.")
+   # inp = inp.lower()
+    #if inp == 'a':
+     #   create_new_room(myRoom)
+    # elif inp == 'b':
+    #     edit_room()
+    # elif inp == 'c':
+    #     slow_print("Sam hands the ring back to Frodo")
+    #     prompt()

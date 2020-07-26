@@ -1,28 +1,31 @@
-import json
 
-UP = 'up', 'north', 'n'
-DOWN = 'down', 'south', 's'
-LEFT = 'left','west', 'w'
-RIGHT = 'right', 'east', 'e'
+from text_utilities import*
+
+NORTH = 'north', 'n'
+SOUTH = 'south', 's'
+WEST = 'west', 'w'
+EAST = 'east', 'e'
+#FORWARD = 'forward', 'f'
+#BACKWARD = 'back', 'backward', 'b', 
 
 def player_move(myAction, zonemap, player):
     room = zonemap[player.location]
     while True:
-        dest = input("Where would you like to move?\n")
-        if dest in UP:
-            destination = room['up']
+        dest = input("What direction would you like to walk?\n")
+        if dest in NORTH:
+            destination = room['north']
             movement_handler(destination, zonemap, player)
             return
-        elif dest in LEFT:
-            destination = room['left']
+        elif dest in WEST:
+            destination = room['west']
             movement_handler(destination, zonemap, player)
             return
-        elif dest in RIGHT:
-            destination = room['right']
+        elif dest in EAST:
+            destination = room['east']
             movement_handler(destination, zonemap, player)
             return
-        elif dest in DOWN:
-            destination = room['down']
+        elif dest in SOUTH:
+           # destination = room['south']
             movement_handler(destination, zonemap, player)
             return
         else:
@@ -30,11 +33,17 @@ def player_move(myAction, zonemap, player):
 
 def movement_handler(destination, zonemap, player):
     if destination in zonemap:
-        print("\n" + "you have moved to " + destination + ".\n")
-        player.location = destination
-        player.print_location()
-    else:
-        if destination == "":
-            print("There is no exit in that direction")
+        inp = urg_prompt("\n  You want to walk to the " + destination + "?")
+        if inp in ('yes', 'Yes', 'y', 'Y'):
+            print("\nYou walk to the " + destination + ".\n")
+            player.location = destination
+            player.print_location()
+        elif inp == 'no':
+            return
+        elif destination == "":
+            print("Well?")
         else:
-            print("Please let an admin know that this room exit is broken.")
+            print("Did you say yes or no?")
+    else:
+        slow_print_ack("Maybe figure out where you're going before you just start yammering.\n", t = 0.03)
+        

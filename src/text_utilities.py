@@ -35,12 +35,16 @@ def slow_prompt(s, t = 0.05):
     slow_print(s, t)
     return input(">>> ")
 
+def urg_prompt(s, t = 0.01):
+    slow_print(s, t)
+    return input(">>> ")
+
 def slow_print_ack(s, t = 0.05):
     slow_print(s, t)
     input("")
 
 def prompt_select_from(prompt, options, failure):
-    inp = input(prompt + '\n').lower()
+    inp = input(prompt + '\n>>>').lower()
     while inp not in options:
         inp = input(failure + '\n').lower()
     return inp
