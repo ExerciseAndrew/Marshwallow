@@ -9,12 +9,10 @@ class Player:
         self.mp = 0
         self.status_effects = []
         self.location = 'Swamp Swimming Hole' ## Also known as 'address' ##
-        self.facing = ''
         self.game_over = False 
         self._teleport = False 
         self._keys = False
         self._zm = zonemap
-        #self._rm = "roommap"
         
    
     def reset_hp_mp(self):
